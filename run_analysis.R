@@ -1,3 +1,4 @@
+#setting the path to the folder on the computer where the data files are located.
 filepath <- "./HARdata" 
 # Read the text file 'activity_labels' for activity labels and assign the data to a variable
 activity_labels <- read.table(paste(filepath, 'activity_labels.txt', sep = '/'), header = FALSE)
