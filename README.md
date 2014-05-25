@@ -12,13 +12,14 @@ This file run_analysis.R contains the script for carrying out the tasks for clea
 
 -The data involves data related to Acceleration, Frequency, Jerk, Gyroscope measurements along X,Y,Z Axis, etc the details are available in the features, features_info.txt document available in the dataset folder which can be downloaded from the link provided above. 
 
-Certain variables that are processed here are 
-mean() - corresponds to Mean value 
-std() - corresponds to Standard deviation
-X, Y , Z - correxpond to the X, Y, Z coordinates
-Subject - subject id in the experiment 
-Label - descriptive label of the activity 
-Types of activity(Levels) - LAYING SITTING STANDING WALKING WALKING_DOWNSTAIRS WALKING_UPSTAIRS
+**Certain variables that are processed here are **
+
+- mean() - corresponds to Mean value 
+- std() - corresponds to Standard deviation
+- X, Y , Z - correxpond to the X, Y, Z coordinates
+- Subject - subject id in the experiment 
+- Label - descriptive label of the activity 
+- Types of activity(Levels) - LAYING SITTING STANDING WALKING WALKING_DOWNSTAIRS WALKING_UPSTAIRS
 
 ### the whole process here can be categorised into sub-processes.
 -Reading data 
