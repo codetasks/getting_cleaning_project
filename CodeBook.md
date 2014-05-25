@@ -61,13 +61,21 @@ rbind()
 
 
 
-###Patterns that were addressed here 
-1. Remove Capital letters
-2. Remove dots, parenthesis, white spaces
-3. Make variables descriptive ( fullform of abbreviations be preferrably included)
-4. Remove duplicates in names like "Body Body" to "body"
-5. convert all names to lower case
+To extract, clean and process datat the following are performed to achieve the goal of the project:
 
+Both train and test datasets are read corresponding to X,y and subject
+X, y and subject data are merged corresponding to train and test datasets
+Feature descriotions are read in.
+Descriptive names are set for the columns in the merged data of X, y and subject
+Mean and standard deviation mesurements are selected for the features included.
+The activity descriptions are read
+Activity dataset is joined with descriptive labels
+Measurements dataset and  activity labels are joined
+The variable names are carefully modified to meet the "tidy data"criteria
+The first output data is written into a csv file cleandata.csv and cleandata.txt
+means are calculated based on the activity and subject pair
+The variable names are carefully modified to meet the "tidy data"criteria
+The second output data is written into a csv file cleandata_avgs.csv and cleandata_avgs.txt
 
 
 **Reference:**
