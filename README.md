@@ -6,26 +6,34 @@ Project is a part of the COURSERA Course " Getting and Cleaning Data " offered b
 ###Script
 =======================
 
-This file run_analysis.R contains the script for carrying out the tasks for cleaning and processing the raw datasets available at [https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip] (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip), the descriptio
-Details and description of this data is available at [http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones] (http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
+This file run_analysis.R contains the script for carrying out the tasks for cleaning and processing the raw datasets available at [https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip] (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
+
+-Details and description of this data is available at [http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones] (http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) [1]
+
+-The data involves data related to Acceleration, Frequency, Jerk, Gyroscope measurements along X,Y,Z Axis, etc the details are available in the features, features_info.txt document available in the dataset folder which can be downloaded from the link provided above. 
+
+Certain variables that are processed here are 
+mean() - corresponds to Mean value 
+std() - corresponds to Standard deviation
+X, Y , Z - correxpond to the X, Y, Z coordinates
+Subject - subject id in the experiment 
+Label - descriptive label of the activity 
+Types of activity(Levels) - LAYING SITTING STANDING WALKING WALKING_DOWNSTAIRS WALKING_UPSTAIRS
+
+### the whole process here can be categorised into sub-processes.
+-Reading data 
+-Cleaning data 
+-processing data 
+-Data output(write into output files)
 
 
+###Tidy data set
 
-These lines of code are responsible for reading the data from the files.
-
-
-###Processing data
--Average of each variable for each activity and each subject to be calculated.
-
-
-###Patterns to be addressed are 
-1. Remove Capital letters
-2. Remove period, brackets, underscores 
-3. Make variables descriptive ( fullform of abbreviations be preferrably included)
-4. Remove duplicates in names like "Body Body" to "body"
-5. convert all names to lower case
-
-
+**Tidy data set follow certain renaming rules:**
+*-No underscores or dots or white spaces or dashes or parentheses*
+*-All lower case prefferable *
+*-The variable names should be descriptive*
+*- No duplications , should be unique*
 
 ###Reading data
 ======================
@@ -82,6 +90,8 @@ cleandata1 <- cleandata[, unique(colnames(cleandata))]
 
 ### Find and replace the  patterns
 -The patterns mentioned as a part of the project are to be found to achieve a good level of cleaning and tidying of the data 
+
+
 
 ```{r}
 variable_names <- colnames(cleandata1)
@@ -144,18 +154,31 @@ variable_names <- gsub("Y","ycoordinate",variable_names,fixed=TRUE)
 variable_names <- gsub("Z","zcoordinate",variable_names,fixed=TRUE)
 variable_names <- tolower(gsub("Gyro","gyroscope",variable_names,fixed=TRUE)) # convert all names to lowercase
 
+```
 
-- sending back the tidy variable names back to the dataset
-
+- sending back the tidy variable names back to the dataset 
+```{r}
 colnames(cleandata1_avgs) <- variable_names
-
+```
 - write the second dataset into a file ,into the same folder where the data is present.
-
+```{r}
 write.csv(cleandata1_avgs,file=paste( filepath, "cleandata_avgs.csv", sep="/"))
-
+```
 - write the second dataset into a text file (for project submission)
-
+```{r}
 write.table(cleandata1_avgs,file=paste( filepath, "cleandata_avgs.txt", sep="/"))
 
 ```
 
+###Patterns that were addressed were 
+1. Remove Capital letters
+2. Remove dots, parenthesis, white spaces
+3. Make variables descriptive ( fullform of abbreviations be preferrably included)
+4. Remove duplicates in names like "Body Body" to "body"
+5. convert all names to lower case
+
+
+
+**Reference:**
+
+*[1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012 *
