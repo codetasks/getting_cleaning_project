@@ -29,9 +29,9 @@ These lines of code are responsible for reading the data from the files.
 
 ###Reading data
 ======================
+-This code is responsible for reading data from the files 
 
-This code is responsible for reading data from the files 
-
+```{r}
 filepath <- "./HARdata" 
 """ Read the text file 'activity_labels' for activity labels and assign the data to a variable
 activity_labels <- read.table(paste(filepath, 'activity_labels.txt', sep = '/'), header = FALSE)
@@ -57,28 +57,33 @@ names(ytest) <- c('activity')
 """ Extracting the data from the text files , assign names
 test.subject <- read.table(paste(filepath, 'test', 'subject_test.txt', sep = '/'), header = FALSE)
 names(test.subject) <- c('subject')
-
+```
 
 ###Training dataset and Test dataset are merged
 
+```{r}
 x <- rbind(Xtrain, Xtest)
 y <- rbind(ytrain, ytest)
 subject <- rbind(train.subject, test.subject)
 
 """Select for mean and standard deviations in the data """
+
+
 x <- x[, grep('mean|std', features$name)]
 
 y$activity <- activity_labels[y$activity,]$name #naming according to activity labels
 
 """ Merge datasets subject, y and x """
+
 cleandata <- cbind(subject, y, x)
 """Get rid of duplicated columns"""
 cleandata1 <- cleandata[, unique(colnames(cleandata))]
-
+```
 
 ### Find and replace the  patterns
 -The patterns mentioned as a part of the project are to be found to achieve a good level of cleaning and tidying of the data 
 
+```{r}
 variable_names <- colnames(cleandata1)
 variable_names <- gsub("-mean()","mean",variable_names,fixed=TRUE)
 variable_names <- gsub("-meanFreq()","meanfrequency",variable_names,fixed=TRUE)
@@ -96,9 +101,9 @@ variable_names <- tolower(gsub("Gyro","gyroscope",variable_names,fixed=TRUE)) # 
   
 # sending back the tidy variable names back to the dataset
 colnames(cleandata1) <- variable_names
-
+```
 ### writing the dataset into a file 
-
+```{r}
 """ write the first dataset into a file ,into the same folder where the data is present """
 write.csv(cleandata1,file=paste( filepath, "cleandata.csv", sep="/"))
 """ write the first dataset into a text file (for project submission) """
@@ -113,17 +118,17 @@ cleandata1_avgs <- cleandata_avgs[, unique(colnames(cleandata_avgs))]
 
 
 
-# mean is calculated based on subject and activity
+ mean is calculated based on subject and activity
 cleandata_avgs <- aggregate(cleandata1[, 3:dim(cleandata1)[2]], list(cleandata1$subject, cleandata1$activity), mean)
 names(cleandata_avgs)[1:2] <- c('subject', 'activity')
 #Get rid of duplicated columns if any
 cleandata1_avgs <- cleandata_avgs[, unique(colnames(cleandata_avgs))]
-
+```
 
 ### Find and replace a few patterns
 - Tidying up the variable names for easier understanding
 
-
+```{r}
 variable_names <- colnames(cleandata1_avgs)
 variable_names <- gsub("-mean()","mean",variable_names,fixed=TRUE)
 variable_names <- gsub("-meanFreq()","meanfrequency",variable_names,fixed=TRUE)
@@ -152,5 +157,5 @@ write.csv(cleandata1_avgs,file=paste( filepath, "cleandata_avgs.csv", sep="/"))
 
 write.table(cleandata1_avgs,file=paste( filepath, "cleandata_avgs.txt", sep="/"))
 
-
+```
 
