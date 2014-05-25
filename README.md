@@ -1,7 +1,7 @@
-##getting_cleaning_project
-========================
+##Getting and Cleaning Data project
+===================================
 
-Project is a part of the COURSERA Course " Getting and Cleaning Data " offered by John Hopkins university.
+This project is a part of the COURSERA Course " Getting and Cleaning Data " offered by John Hopkins university.
 
 ###Script
 =======================
@@ -21,19 +21,27 @@ This file run_analysis.R contains the script for carrying out the tasks for clea
 - Label - descriptive label of the activity 
 - Types of activity(Levels) - LAYING SITTING STANDING WALKING WALKING_DOWNSTAIRS WALKING_UPSTAIRS
 
-### the whole process here can be categorised into sub-processes.
--Reading data 
--Cleaning data 
--processing data 
--Data output(write into output files)
+### The whole process here can be categorised into sub-processes.
+
+**-Reading data **
+
+**-Cleaning data **
+
+**-processing data **
+
+**-Data output(write into output files)**
 
 
 ###Tidy data set
 
 **Tidy data set follow certain renaming rules:**
+
 *-No underscores or dots or white spaces or dashes or parentheses*
+
 *-All lower case prefferable *
+
 *-The variable names should be descriptive*
+
 *- No duplications , should be unique*
 
 ###Reading data
@@ -171,7 +179,7 @@ write.table(cleandata1_avgs,file=paste( filepath, "cleandata_avgs.txt", sep="/")
 
 ```
 
-###Patterns that were addressed were 
+###Patterns that were addressed here 
 1. Remove Capital letters
 2. Remove dots, parenthesis, white spaces
 3. Make variables descriptive ( fullform of abbreviations be preferrably included)
